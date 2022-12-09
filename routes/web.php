@@ -31,6 +31,8 @@ Route::get('/Auth/register', function(){
     return view('Auth.register');
 })->name('Auth.register');
 
+Route::post('/auth',[UserController::class,'save'])->name('users.save'); //guarda un nuevo usuario
+
 Route::middleware(['auth'])->group(function(){
 
     Route::get('/Auth/home', function(){
@@ -54,7 +56,7 @@ Route::middleware(['auth'])->group(function(){
     Route::get('/users/{id}',[UserController::class,'show'])->name('users.show'); //Muestra detalles de un usuario
     Route::get('/users/edit/{user}',[UserController::class,'edit'])->name('users.edit'); // manda al form editar usuario recive un objeto usuario
     Route::post('/users',[UserController::class,'store'])->name('users.store'); //guarda un nuevo usuario
-    Route::post('/auth',[UserController::class,'save'])->name('users.save'); //guarda un nuevo usuario
+
     Route::put('/users/update/{id}',[UserController::class,'update'])->name('users.update'); //actualiza un usuario recive el valor del id
     Route::delete('/users/delete/{user}',[UserController::class,'destroy'])->name('users.destroy'); // elimina un usuario en especifico recive un objeto usuario
 
